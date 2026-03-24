@@ -50,7 +50,7 @@ exports.handler = async function (event) {
     'Type':            data.type       || '',
     'Entreprise':       data.entreprise || '',
     'Source':           data.source     || '',
-    'Date inscription': new Date().toISOString(),
+    'Date': new Date().toISOString(),
     'Événement':        'Road Show 27 Mars 2026',
   };
 
