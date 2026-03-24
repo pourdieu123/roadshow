@@ -47,7 +47,7 @@ exports.handler = async function (event) {
     'Email':            data.email      || '',
     'Téléphone':        data.telephone  || '',
     'Fonction':         data.fonction   || '',
-    'Type participant': data.type       || '',
+    'Type ':            data.type       || '',
     'Entreprise':       data.entreprise || '',
     'Source':           data.source     || '',
     'Date inscription': new Date().toISOString(),
