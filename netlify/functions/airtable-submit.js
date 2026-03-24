@@ -1,10 +1,7 @@
 // netlify/functions/airtable-submit.js
 // ─────────────────────────────────────────────────────────────────────────────
 // Proxy sécurisé vers Airtable — 7Elite Road Show 2026
-//
-// Base ID et Table ID sont fixes (non sensibles, visibles dans l'URL Airtable).
-// Seul le token est secret → à définir dans Netlify > Environment Variables :
-//   AIRTABLE_TOKEN = votre-nouveau-token
+// Noms de champs alignés sur la table "Inscription" de la Base Road Show
 // ─────────────────────────────────────────────────────────────────────────────
 
 const AIRTABLE_BASE  = 'appaACRTxEWlYU5op';
@@ -27,7 +24,7 @@ exports.handler = async function (event) {
       statusCode: 500,
       headers,
       body: JSON.stringify({
-        error: 'AIRTABLE_TOKEN manquant. Ajoutez-le dans Netlify › Environment Variables.'
+        error: 'AIRTABLE_TOKEN manquant dans les variables Netlify.'
       }),
     };
   }
@@ -43,15 +40,16 @@ exports.handler = async function (event) {
     };
   }
 
+  // Noms des champs = noms exacts des colonnes dans votre table Airtable "Inscription"
   const fields = {
-    'Prénom':           data.prenom    || '',
-    'Nom':              data.nom       || '',
-    'Email':            data.email     || '',
-    'Téléphone':        data.telephone || '',
-    'Fonction':         data.fonction  || '',
-    'Type participant': data.type      || '',
-    'Entreprise':       data.entreprise|| '',
-    'Source':           data.source    || '',
+    'Prénom':           data.prenom     || '',
+    'Nom':              data.nom        || '',
+    'Email':            data.email      || '',
+    'Téléphone':        data.telephone  || '',
+    'Fonction':         data.fonction   || '',
+    'Type participant': data.type       || '',
+    'Entreprise':       data.entreprise || '',
+    'Source':           data.source     || '',
     'Date inscription': new Date().toISOString(),
     'Événement':        'Road Show 27 Mars 2026',
   };
@@ -84,6 +82,7 @@ exports.handler = async function (event) {
       headers,
       body: JSON.stringify({ success: true, id: json.id }),
     };
+
   } catch (err) {
     return {
       statusCode: 500,
