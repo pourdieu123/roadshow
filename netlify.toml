@@ -1,0 +1,14 @@
+# netlify.toml
+# ─────────────────────────────────────────────────────────────────────────────
+# Configuration de déploiement Netlify pour 7Elite Road Show
+# ─────────────────────────────────────────────────────────────────────────────
+
+[build]
+  publish = "."             # Dossier racine (votre index.html est à la racine)
+  functions = "netlify/functions"  # Dossier des fonctions serverless
+
+# Redirection : /api/* → Netlify Functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

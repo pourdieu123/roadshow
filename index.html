@@ -24,6 +24,8 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
 
+  a { text-decoration: none; }
+
   .cursor-ring {
     width: 32px; height: 32px;
     border: 1.5px solid var(--gold);
@@ -52,12 +54,12 @@
     transition: all 0.4s ease;
   }
   nav.scrolled { background: rgba(10,10,10,0.98); border-bottom-color: rgba(201,168,76,0.15); padding: 12px 60px; }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
   .nav-logo img { height: 38px; width: auto; transition: filter 0.3s; }
   .nav-logo img:hover { filter: brightness(0) saturate(100%) invert(75%) sepia(40%) saturate(400%) hue-rotate(5deg); }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
-    text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
     color: rgba(250,250,245,0.55); transition: color 0.3s; position: relative;
   }
   .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
@@ -74,7 +76,7 @@
     z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 36px;
   }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { font-family: 'Cormorant Garamond',serif; font-size: 34px; font-weight: 300; color: var(--white); text-decoration: none; letter-spacing: 2px; transition: color 0.3s; }
+  .mobile-menu a { font-family: 'Cormorant Garamond',serif; font-size: 34px; font-weight: 300; color: var(--white); letter-spacing: 2px; transition: color 0.3s; }
   .mobile-menu a:hover { color: var(--gold); }
   .mobile-close { position: absolute; top: 22px; right: 28px; background: none; border: none; color: var(--gold); font-size: 28px; cursor: pointer; }
 
@@ -124,7 +126,7 @@
     background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--black);
     padding: 15px 38px; border: none; font-family: 'DM Sans',sans-serif;
     font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: 8px;
     transition: all 0.3s; position: relative; overflow: hidden; cursor: pointer;
   }
   .btn-primary::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.12); transform: translateX(-100%); transition: transform 0.4s ease; }
@@ -134,7 +136,7 @@
     background: transparent; color: var(--white); padding: 15px 38px;
     border: 1px solid rgba(250,250,245,0.18); font-family: 'DM Sans',sans-serif;
     font-size: 11px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; cursor: pointer;
   }
   .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
   .scroll-indicator { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 0.8s ease forwards 1.6s; }
@@ -173,16 +175,48 @@
   .about-intro { max-width: 820px; margin-bottom: 76px; }
   .about-intro p { font-family: 'Cormorant Garamond',serif; font-size: clamp(17px,1.8vw,21px); line-height: 1.75; color: rgba(250,250,245,0.78); margin-bottom: 18px; }
   .about-intro p:first-of-type::first-letter { float: left; font-size: 76px; line-height: 0.7; margin-right: 10px; margin-top: 6px; color: var(--gold); font-family: 'Cormorant Garamond',serif; font-weight: 700; }
-  .poles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 56px; }
-  .pole-card { background: var(--dark2); padding: 46px 38px; position: relative; overflow: hidden; transition: all 0.4s ease; border: 1px solid transparent; }
-  .pole-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(to right, var(--gold), var(--red)); transition: width 0.5s ease; }
+
+  .poles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+  }
+  .pole-card {
+    background: var(--dark2);
+    padding: 46px 38px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  .pole-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(to right, var(--gold), var(--red));
+    transition: width 0.5s ease;
+  }
   .pole-card:hover { border-color: var(--border); background: var(--dark3); }
   .pole-card:hover::before { width: 100%; }
-  .pole-number { font-family: 'Cormorant Garamond',serif; font-size: 76px; font-weight: 300; color: rgba(201,168,76,0.06); position: absolute; top: 12px; right: 20px; line-height: 1; transition: color 0.4s; }
+  .pole-number {
+    font-family: 'Cormorant Garamond',serif; font-size: 76px; font-weight: 300;
+    color: rgba(201,168,76,0.06); position: absolute; top: 12px; right: 20px;
+    line-height: 1; transition: color 0.4s;
+    pointer-events: none;
+  }
   .pole-card:hover .pole-number { color: rgba(201,168,76,0.13); }
   .pole-accent { width: 32px; height: 2px; background: var(--gold); margin-bottom: 22px; }
-  .pole-title { font-family: 'Syncopate',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
-  .pole-desc { font-size: 14px; line-height: 1.7; color: rgba(250,250,245,0.48); }
+  .pole-title {
+    font-family: 'Syncopate',sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--white);
+    margin-bottom: 14px; text-decoration: none;
+  }
+  .pole-desc {
+    font-size: 14px; line-height: 1.7; color: rgba(250,250,245,0.48);
+  }
 
   #programme { background: var(--black); }
   #programme::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.25; }
@@ -215,20 +249,16 @@
     display: flex; flex-direction: column;
   }
   .badge-card:hover { box-shadow: 0 32px 90px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.2), inset 0 1px 0 rgba(201,168,76,0.2); }
-
   .badge-top-band { height: 5px; background: linear-gradient(to right, var(--red), #C03030, var(--gold)); flex-shrink: 0; }
-
   .badge-header-area { padding: 22px 26px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(201,168,76,0.08); flex-shrink: 0; }
-  .badge-logo-img { height: 30px; width: auto; opacity: 0.9; }
+  .badge-logo-img { height: 30px; width: auto; opacity: 0.9; object-fit: contain; }
   .badge-type-pill { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35); color: var(--gold); font-size: 8px; letter-spacing: 2.5px; padding: 5px 12px; text-transform: uppercase; font-family: 'Syncopate',sans-serif; font-weight: 700; }
-
   .badge-body { flex: 1; padding: 28px 26px; display: flex; flex-direction: column; justify-content: center; position: relative; }
   .badge-body::after { content: ''; position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: radial-gradient(circle, rgba(201,168,76,0.04), transparent); pointer-events: none; }
   .badge-accent-line { width: 40px; height: 2px; background: linear-gradient(to right, var(--gold), var(--red)); margin-bottom: 16px; }
   .badge-name { font-family: 'Cormorant Garamond',serif; font-size: clamp(22px, 3.2vw, 34px); font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 8px; min-height: 38px; letter-spacing: -0.5px; }
   .badge-function { font-size: 10px; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; min-height: 18px; font-weight: 500; }
   .badge-company { font-size: 12px; color: rgba(250,250,245,0.38); min-height: 18px; }
-
   .badge-footer { padding: 16px 26px 20px; background: rgba(201,168,76,0.03); border-top: 1px solid rgba(201,168,76,0.08); flex-shrink: 0; }
   .badge-event-tag { font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,168,76,0.5); margin-bottom: 10px; font-family: 'Syncopate',sans-serif; }
   .badge-details-row { display: flex; justify-content: space-between; align-items: center; }
@@ -273,6 +303,13 @@
     display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
   }
   .btn-download:hover { background: var(--gold); color: var(--black); }
+  .btn-print {
+    background: transparent; color: rgba(250,250,245,0.6); padding: 13px 28px;
+    border: 1px solid rgba(250,250,245,0.2); font-family: 'DM Sans',sans-serif; font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; margin-top: 18px; margin-left: 10px;
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  }
+  .btn-print:hover { border-color: var(--gold); color: var(--gold); }
 
   footer { background: var(--dark2); border-top: 1px solid var(--border); padding: 60px; text-align: center; }
   .footer-logo { margin: 0 auto 12px; }
@@ -317,7 +354,6 @@
 <body>
 
 <div class="cursor-ring" id="cursorRing"></div>
-
 <div class="toast" id="toast"><strong id="toastTitle"></strong><span id="toastMsg"></span></div>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -403,42 +439,25 @@
 <section id="about">
   <div class="section-container">
     <div class="section-label">L'Élite Groupe</div>
-    <div class="about-intro reveal">
-      <h2 class="section-title">Une <em>nouvelle</em> envergure,<br>une seule vision</h2>
-      <p>Depuis des années, vous nous connaissez au travers de nos réalisations dans l'ingénierie, dans la santé et dans les solutions institutionnelles. Nos entreprises ont accompagné des projets structurants au Bénin, en France et dans plusieurs pays francophones, avec la même exigence, rigueur, discipline et performance.</p>
-      <p>Mais les projets sont devenus plus complexes, plus transversaux, plus stratégiques. Les États et les grands acteurs privés n'ont plus seulement besoin de simples prestataires, mais de partenaires capables de concevoir, structurer, financer et exécuter. Il ne nous suffisait plus d'être spécialisés : il nous fallait une organisation consolidée.</p>
-      <p>Nous avons compris qu'il était temps de franchir un cap. Aujourd'hui, cette évolution prend une forme très claire en devenant <strong>l'Élite Groupe</strong>, un groupe stratégique opérationnel entre l'Afrique et l'Europe, capable d'accompagner des projets complexes de bout en bout.</p>
-      <p>Nous n'avons pas seulement grandi, <em>nous avons changé d'échelle.</em> Travailler avec l'Élite Groupe, c'est s'appuyer sur quatre pôles stratégiques et complémentaires, coordonnés au sein d'une même organisation pour concevoir, financer et réaliser des projets de bout en bout.</p>
-    </div>
     <div class="poles-grid">
       <div class="pole-card reveal" style="transition-delay:0.1s">
-      <a href="">
-         <div class="pole-number">01</div>
+        <div class="pole-number">01</div>
         <div class="pole-accent"></div>
         <div class="pole-title">Ingénierie & Infrastructures</div>
         <p class="pole-desc">Conception, planification et réalisation de projets d'infrastructure complexes. BIM, Scan 3D et intelligence artificielle au service de la construction moderne — plus vite, mieux, moins cher.</p>
-      
-      </a> 
       </div>
       <div class="pole-card reveal" style="transition-delay:0.2s">
-     a
-  <a href="">
-       <div class="pole-number">02</div>
+        <div class="pole-number">02</div>
         <div class="pole-accent"></div>
         <div class="pole-title">Santé & Équipements Biomédicaux</div>
         <p class="pole-desc">Hygiène hospitalière, ingénieries sanitaires et équipements biomédicaux de pointe. 7Elite BiomédiK & IAC construisent ensemble l'hôpital sain de demain.</p>
-     
-  </a>
       </div>
-      <a href="">
-         <div class="pole-card reveal" style="transition-delay:0.3s">
+      <div class="pole-card reveal" style="transition-delay:0.3s">
         <div class="pole-number">03</div>
         <div class="pole-accent"></div>
         <div class="pole-title">Financement & Structuration</div>
         <p class="pole-desc">Finance sociale, consolidation des comptes et structuration de projets. Nous accompagnons les porteurs de projets dans leur montage financier et leur consolidation organisationnelle.</p>
-    
-      </a>
-       </div>
+      </div>
       <div class="pole-card reveal" style="transition-delay:0.4s">
         <div class="pole-number">04</div>
         <div class="pole-accent"></div>
@@ -465,7 +484,6 @@
         </p>
       </div>
     </div>
-    <!-- MATIN -->
     <div class="programme-session">
       <div class="session-header"><div class="session-bar"></div><div class="session-title">Matin — Ouverture & Découverte</div></div>
       <div class="programme-item"><div class="prog-time">09:30</div><div class="prog-content"><div class="prog-title">Ouverture des portes</div><div class="prog-desc">Accueil · Remise des kits cadeaux & Passeport 7Elite</div></div></div>
@@ -473,14 +491,12 @@
       <div class="programme-item"><div class="prog-time">10:20 – 11:30</div><div class="prog-content"><div class="prog-title">Visite libre des 4 pôles & Démonstrations</div><div class="prog-desc">BIM / Scan 3D · Hygiène hospitalière · Communication & Branding · Diagnostic financier · Bar & café accessibles</div></div></div>
       <div class="programme-item"><div class="prog-time">11:30 – 12:30</div><div class="prog-content"><div class="prog-title">PANEL 1 — Le BTP à l'ère de l'IA</div><div class="prog-desc">Construire plus vite, mieux et moins cher · BIM, Scan 3D et intelligence artificielle · Démonstration live sur projet réel</div><div class="prog-tag">Panel</div></div></div>
     </div>
-    <!-- APRES-MIDI -->
     <div class="programme-session">
       <div class="session-header"><div class="session-bar"></div><div class="session-title">Après-midi — Panels & Conférences</div></div>
       <div class="programme-item"><div class="prog-time">13:30 – 14:30</div><div class="prog-content"><div class="prog-title">PANEL 2 — De l'idée à la marque en live</div><div class="prog-desc">Créer son identité visuelle en temps réel · Démonstration en direct · Branding, objets personnalisés & storytelling</div><div class="prog-tag">Panel</div></div></div>
       <div class="programme-item"><div class="prog-time">15:00 – 16:00</div><div class="prog-content"><div class="prog-title">PANEL 3 — Hygiène hospitalière & ingénieries sanitaires</div><div class="prog-desc">L'alliance révolutionnaire · De la conception de l'espace au protocole d'hygiène · 7Elite BiomédiK & IAC construisent l'hôpital sain de demain</div><div class="prog-tag">Panel</div></div></div>
       <div class="programme-item"><div class="prog-time">16:15 – 17:15</div><div class="prog-content"><div class="prog-title">PANEL 4 — 7Elite l'a fait : transformer ses sociétés en groupe</div><div class="prog-desc">Finance sociale, consolidation des comptes & structuration · Témoignage inédit de la DAF de 7Elite Groupe</div><div class="prog-tag">Panel</div></div></div>
     </div>
-    <!-- CLOTURE -->
     <div class="programme-session">
       <div class="session-header"><div class="session-bar"></div><div class="session-title">Clôture & Soirée</div></div>
       <div class="programme-item"><div class="prog-time">17:30</div><div class="prog-content"><div class="prog-title">Clôture officielle</div><div class="prog-desc">Mot de clôture du Directeur Général</div></div></div>
@@ -495,13 +511,12 @@
   <div class="section-container">
     <div class="section-label">Badge d'entrée</div>
     <div class="badge-layout">
-      <!-- PREVIEW -->
       <div class="badge-preview-area">
         <div class="badge-preview-label">Aperçu de votre badge officiel</div>
         <div class="badge-card" id="badgeCard">
           <div class="badge-top-band"></div>
           <div class="badge-header-area">
-            <img src="GROUPE.png" alt="7Elite" class="badge-logo-img">
+            <img src="GROUPE.png" alt="7Elite" class="badge-logo-img" id="badgeLogoPreview">
             <div class="badge-type-pill" id="previewType">VISITEUR</div>
           </div>
           <div class="badge-body">
@@ -525,17 +540,30 @@
           </div>
         </div>
       </div>
-      <!-- FORM -->
+
+      <!-- FORM — sans formulaire de configuration Airtable visible -->
       <div class="form-section">
         <h2 class="form-title reveal">Générez votre <em style="color:var(--gold);font-family:'Cormorant Garamond',serif">badge</em></h2>
-        <p class="form-subtitle reveal">Remplissez le formulaire. Votre badge sera généré en PDF et vos informations envoyées par e-mail automatiquement.</p>
-        <form id="badgeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <p class="form-subtitle reveal">Remplissez le formulaire ci-dessous. Votre badge sera généré en PDF (86×120 mm) et vos informations seront automatiquement transmises à notre équipe.</p>
+
+        <!-- UPLOAD LOGO -->
+        <div style="background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.18);padding:16px 18px;margin-bottom:28px;border-left:3px solid var(--gold-dark);">
+          <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">🖼 Logo sur le badge PDF</div>
+          <p style="font-size:11px;color:rgba(250,250,245,0.5);margin-bottom:12px;line-height:1.6;">Importez <strong style="color:var(--white)">GROUPE.png</strong> pour qu'il apparaisse sur votre badge PDF.</p>
+          <label style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);color:var(--gold);padding:9px 18px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;" onmouseover="this.style.background='rgba(201,168,76,0.18)'" onmouseout="this.style.background='rgba(201,168,76,0.08)'">
+            <span>📁 Choisir le logo</span>
+            <input type="file" id="logoUpload" accept="image/*" style="display:none;">
+          </label>
+          <span id="logoStatus" style="display:block;margin-top:10px;font-size:11px;color:rgba(250,250,245,0.35);">Aucun logo chargé</span>
+        </div>
+
+        <form id="badgeForm">
           <div class="form-row">
             <div class="form-group"><label class="form-label">Prénom *</label><input type="text" name="prenom" class="form-control" placeholder="Votre prénom" required id="inputPrenom"></div>
             <div class="form-group"><label class="form-label">Nom *</label><input type="text" name="nom" class="form-control" placeholder="Votre nom" required id="inputNom"></div>
           </div>
           <div class="form-group"><label class="form-label">Adresse e-mail *</label><input type="email" name="email" class="form-control" placeholder="votre@email.com" required id="inputEmail"></div>
-          <div class="form-group"><label class="form-label">Téléphone</label><input type="tel" name="telephone" class="form-control" placeholder="+229 XX XX XX XX"></div>
+          <div class="form-group"><label class="form-label">Téléphone</label><input type="tel" name="telephone" class="form-control" placeholder="+229 XX XX XX XX" id="inputTel"></div>
           <div class="form-row">
             <div class="form-group"><label class="form-label">Fonction / Titre *</label><input type="text" name="fonction" class="form-control" placeholder="Directeur, Ingénieur..." required id="inputFonction"></div>
             <div class="form-group"><label class="form-label">Type de participant *</label>
@@ -551,7 +579,7 @@
           </div>
           <div class="form-group"><label class="form-label">Entreprise / Organisation</label><input type="text" name="entreprise" class="form-control" placeholder="Nom de votre structure" id="inputEntreprise"></div>
           <div class="form-group"><label class="form-label">Comment avez-vous entendu parler de l'événement ?</label>
-            <select name="source" class="form-control">
+            <select name="source" class="form-control" id="inputSource">
               <option value="">Sélectionner...</option>
               <option>Réseaux sociaux</option>
               <option>Bouche à oreille</option>
@@ -564,8 +592,11 @@
         </form>
         <div class="form-success" id="formSuccess">
           <h3>Badge généré !</h3>
-          <p>Vos informations ont été enregistrées avec succès. Téléchargez votre badge officiel ci-dessous.</p>
-          <button class="btn-download" onclick="downloadBadge()">Télécharger mon badge PDF</button>
+          <p>Vos informations ont été transmises avec succès. Téléchargez et imprimez votre badge officiel ci-dessous.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0;justify-content:center;">
+            <button class="btn-download" onclick="downloadBadge()">⬇ Télécharger le PDF</button>
+            <button class="btn-print" onclick="printBadge()">🖨 Imprimer directement</button>
+          </div>
         </div>
       </div>
     </div>
@@ -584,7 +615,9 @@
 </footer>
 
 <script>
+// =========================================================
 // CURSOR RING
+// =========================================================
 const ring = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
 document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
@@ -599,14 +632,12 @@ document.querySelectorAll('a, button, input, select').forEach(el => {
   el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
 });
 
-// NAV SCROLL
+// =========================================================
+// NAV
+// =========================================================
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
-
-// MOBILE MENU
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-
-// SMOOTH ANCHOR
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
@@ -615,7 +646,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+// =========================================================
 // COUNTDOWN
+// =========================================================
 const eventDate = new Date('2026-03-27T09:30:00');
 let prev = {};
 function updateCountdown() {
@@ -641,7 +674,9 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 10); updateCountdown();
 
+// =========================================================
 // QR PATTERN
+// =========================================================
 function generateQR() {
   const qr = document.getElementById('badgeQR');
   if (!qr) return;
@@ -654,7 +689,9 @@ function generateQR() {
 }
 generateQR();
 
+// =========================================================
 // LIVE BADGE PREVIEW
+// =========================================================
 function updatePreview() {
   const nom = document.getElementById('inputNom').value.trim();
   const prenom = document.getElementById('inputPrenom').value.trim();
@@ -671,133 +708,255 @@ function updatePreview() {
   if (el) { el.addEventListener('input', updatePreview); el.addEventListener('change', updatePreview); }
 });
 
+// =========================================================
+// LOGO — Upload local
+// =========================================================
+let logoDataUrl = null;
+let logoNaturalW = 320;
+let logoNaturalH = 100;
+
+document.getElementById('logoUpload').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    logoDataUrl = ev.target.result;
+    const tmpImg = new Image();
+    tmpImg.onload = function() {
+      logoNaturalW = tmpImg.naturalWidth;
+      logoNaturalH = tmpImg.naturalHeight;
+      document.getElementById('badgeLogoPreview').src = logoDataUrl;
+      document.getElementById('logoStatus').textContent = '✓ Logo chargé — il apparaîtra sur le badge';
+      document.getElementById('logoStatus').style.color = '#C9A84C';
+    };
+    tmpImg.src = logoDataUrl;
+  };
+  reader.readAsDataURL(file);
+});
+
+// =========================================================
+// AIRTABLE — Appel via Netlify Function (proxy sécurisé)
+// Les credentials ne sont JAMAIS dans ce fichier HTML.
+// Ils sont stockés dans les variables d'environnement Netlify.
+// Endpoint : /api/airtable-submit  →  netlify/functions/airtable-submit.js
+// =========================================================
+async function sendToAirtable(data) {
+  try {
+    const res = await fetch('/api/airtable-submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (res.ok && json.success) return { ok: true };
+    return { ok: false, reason: json.error || 'Erreur inconnue' };
+  } catch (e) {
+    // En local (file://) ou sans Netlify, on continue sans bloquer
+    return { ok: false, reason: 'hors_ligne' };
+  }
+}
+
+// =========================================================
 // FORM SUBMIT
+// =========================================================
 document.getElementById('badgeForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
-  btn.textContent = 'Envoi en cours...'; btn.disabled = true;
-  try {
-    const data = new FormData(this);
-    await fetch(this.action, { method:'POST', body:data, headers:{Accept:'application/json'} });
-  } catch(err) {}
+  btn.textContent = '⏳ Enregistrement...'; btn.disabled = true;
+
+  const formData = {
+    prenom: document.getElementById('inputPrenom').value.trim(),
+    nom: document.getElementById('inputNom').value.trim(),
+    email: document.getElementById('inputEmail').value.trim(),
+    telephone: document.getElementById('inputTel').value.trim(),
+    fonction: document.getElementById('inputFonction').value.trim(),
+    type: document.getElementById('inputType').value,
+    entreprise: document.getElementById('inputEntreprise').value.trim(),
+    source: document.getElementById('inputSource').value
+  };
+
+  const atResult = await sendToAirtable(formData);
+  if (atResult.ok) {
+    showToast('Enregistré ✓', 'Votre participation est confirmée dans notre base.');
+  } else if (atResult.reason === 'hors_ligne') {
+    showToast('Mode local', 'Badge généré — l\'envoi Airtable est actif en production.');
+  } else {
+    showToast('Info', atResult.reason);
+  }
+
   document.getElementById('formSuccess').style.display = 'block';
   this.style.display = 'none';
-  showToast('Badge prêt !', 'Téléchargez votre badge PDF ci-dessous.');
 });
 
-// DOWNLOAD BADGE PDF
-function downloadBadge() {
+// =========================================================
+// BADGE PDF
+// =========================================================
+function buildBadgePDF() {
   const {jsPDF} = window.jspdf;
-  const doc = new jsPDF({orientation:'portrait', unit:'mm', format:[85,115]});
+  const W = 86, H = 120;
+  const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:[W, H] });
+
   const nom = document.getElementById('inputNom').value.trim();
   const prenom = document.getElementById('inputPrenom').value.trim();
   const fn = document.getElementById('inputFonction').value.trim();
   const ent = document.getElementById('inputEntreprise').value.trim();
   const type = document.getElementById('inputType').value || 'VISITEUR';
-  const fullName = [prenom,nom].filter(Boolean).join(' ') || 'Participant';
+  const fullName = [prenom, nom].filter(Boolean).join(' ') || 'Participant';
 
-  // Background
-  doc.setFillColor(13,13,13); doc.rect(0,0,85,115,'F');
+  doc.setFillColor(13, 13, 13);
+  doc.rect(0, 0, W, H, 'F');
 
-  // Top band
-  doc.setFillColor(139,26,26); doc.rect(0,0,28,4,'F');
-  doc.setFillColor(160,35,35); doc.rect(28,0,14,4,'F');
-  doc.setFillColor(180,140,50); doc.rect(42,0,14,4,'F');
-  doc.setFillColor(201,168,76); doc.rect(56,0,29,4,'F');
+  doc.setFillColor(30, 30, 30);
+  doc.rect(0, 0, W, 8, 'F');
+  doc.setFillColor(13, 13, 13);
+  doc.circle(W/2, 4, 2.2, 'F');
+  doc.setDrawColor(60, 60, 60);
+  doc.setLineWidth(0.4);
+  doc.circle(W/2, 4, 2.2, 'S');
 
-  // Header area bg
-  doc.setFillColor(20,20,20); doc.rect(0,4,85,18,'F');
+  doc.setFillColor(139, 26, 26);  doc.rect(0,  8, W*0.30, 5, 'F');
+  doc.setFillColor(155, 30, 30);  doc.rect(W*0.30, 8, W*0.15, 5, 'F');
+  doc.setFillColor(175, 120, 40); doc.rect(W*0.45, 8, W*0.15, 5, 'F');
+  doc.setFillColor(201, 168, 76); doc.rect(W*0.60, 8, W*0.40, 5, 'F');
 
-  // Logo dans le PDF — on tente de charger GROUPE.png
-  try {
-    const img = new Image();
-    img.src = 'GROUPE.png';
-    doc.addImage(img, 'PNG', 6, 7, 32, 10);
-  } catch(e) {
-    // fallback: texte si image non chargée
-    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(201,168,76);
-    doc.text('7ELITE GROUPE', 6, 14);
-  }
+  doc.setFillColor(20, 18, 16);
+  doc.rect(0, 13, W, 20, 'F');
 
-  // Type pill
-  doc.setFillColor(40,30,10); doc.roundedRect(58,7,22,8,1,1,'F');
-  doc.setDrawColor(201,168,76); doc.setLineWidth(0.3); doc.roundedRect(58,7,22,8,1,1,'S');
-  doc.setFont('helvetica','bold'); doc.setFontSize(6); doc.setTextColor(201,168,76);
-  doc.text(type, 69, 12.5, {align:'center'});
-
-  // Header bottom border
-  doc.setDrawColor(201,168,76); doc.setLineWidth(0.15);
-  doc.line(6,23,79,23);
-
-  // Accent line
-  doc.setFillColor(139,26,26); doc.rect(6,29,12,1.5,'F');
-  doc.setFillColor(201,168,76); doc.rect(18,29,6,1.5,'F');
-
-  // Name
-  doc.setFont('times','bold'); doc.setFontSize(19); doc.setTextColor(250,250,245);
-  const nameParts = fullName.split(' ');
-  if (fullName.length > 18) {
-    doc.setFontSize(15);
-    doc.text(nameParts[0] || '', 6, 42);
-    doc.text(nameParts.slice(1).join(' ') || '', 6, 50);
+  if (logoDataUrl) {
+    const ratio = logoNaturalW / logoNaturalH;
+    const lH = 11;
+    const lW = Math.min(lH * ratio, 46);
+    doc.addImage(logoDataUrl, 'PNG', 5, 16, lW, lH);
   } else {
-    doc.text(fullName, 6, 44);
+    doc.setFontSize(9); doc.setFont('helvetica','bold');
+    doc.setTextColor(201,168,76);
+    doc.text('7ELITE', 5, 21);
+    doc.setFontSize(6); doc.setFont('helvetica','normal');
+    doc.setTextColor(180,150,70);
+    doc.text('GROUPE', 5, 26);
   }
 
-  // Function
-  doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(201,168,76);
-  doc.text((fn || '').toUpperCase(), 6, 58, {maxWidth: 73});
+  doc.setFillColor(35, 26, 8);
+  doc.roundedRect(56, 17, 25, 8, 1.2, 1.2, 'F');
+  doc.setDrawColor(201, 168, 76); doc.setLineWidth(0.35);
+  doc.roundedRect(56, 17, 25, 8, 1.2, 1.2, 'S');
+  doc.setFont('helvetica','bold'); doc.setFontSize(5.5);
+  doc.setTextColor(201, 168, 76);
+  doc.text(type, 68.5, 22.2, { align:'center' });
 
-  // Company
-  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(160,155,145);
-  doc.text(ent || '', 6, 64, {maxWidth: 73});
+  doc.setDrawColor(201, 168, 76); doc.setLineWidth(0.2);
+  doc.line(5, 33.5, W-5, 33.5);
 
-  // Footer area
-  doc.setFillColor(18,16,14); doc.rect(0,78,85,37,'F');
-  doc.setDrawColor(201,168,76); doc.setLineWidth(0.15); doc.line(6,79,79,79);
+  doc.setFillColor(139,26,26); doc.rect(5, 38, 16, 1.8, 'F');
+  doc.setFillColor(201,168,76); doc.rect(21, 38, 8, 1.8, 'F');
 
-  // Event tag
-  doc.setFont('helvetica','bold'); doc.setFontSize(6); doc.setTextColor(120,96,30);
-  doc.text('ROAD SHOW · 7ELITE GROUPE · 2026', 6, 86);
-
-  // Location & date
-  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(130,125,115);
-  doc.text('Cotonou, Bénin', 6, 96);
-  doc.setFont('times','bold'); doc.setFontSize(15); doc.setTextColor(201,168,76);
-  doc.text('27.03.26', 6, 106);
-
-  // QR
-  const qp = [1,1,1,0,1,1,0,1,1,0,1,0,0,0,1,0,1,1,0,1,1,1,1,0,1];
-  doc.setFillColor(201,168,76);
-  for(let i=0;i<25;i++) {
-    if(qp[i]) { doc.rect(60+(i%5)*4, 92+Math.floor(i/5)*4, 3.2, 3.2, 'F'); }
+  const taille = fullName.length > 20 ? 15 : fullName.length > 14 ? 18 : 22;
+  doc.setFont('times','bold'); doc.setFontSize(taille);
+  doc.setTextColor(250, 250, 245);
+  if (fullName.length > 20) {
+    const parts = fullName.split(' ');
+    doc.text(parts[0] || '', 5, 50);
+    doc.text(parts.slice(1).join(' ') || '', 5, 58);
+  } else {
+    doc.text(fullName, 5, 52);
   }
-  doc.setFont('helvetica','normal'); doc.setFontSize(5); doc.setTextColor(100,95,85);
-  doc.text('BADGE OFFICIEL', 60, 114);
 
-  // Bottom bar
-  doc.setFillColor(201,168,76); doc.rect(0,113,85,2,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(7);
+  doc.setTextColor(201, 168, 76);
+  doc.text((fn || '').toUpperCase().substring(0, 38), 5, 64, { maxWidth: W - 10 });
 
-  doc.save('Badge_7Elite_' + fullName.replace(/\s+/g,'_') + '.pdf');
-  showToast('Téléchargé !', 'Votre badge PDF est prêt.');
+  doc.setFont('helvetica','normal'); doc.setFontSize(6.5);
+  doc.setTextColor(155, 150, 140);
+  doc.text(ent || '', 5, 70, { maxWidth: W - 10 });
+
+  doc.setDrawColor(40, 36, 28); doc.setLineWidth(0.3);
+  doc.line(0, 82, W, 82);
+
+  doc.setFillColor(17, 15, 13);
+  doc.rect(0, 82, W, H-82, 'F');
+
+  doc.setFont('helvetica','bold'); doc.setFontSize(5.5);
+  doc.setTextColor(110, 88, 28);
+  doc.text('ROAD SHOW · 7ELITE GROUPE · 2026', 5, 90);
+
+  doc.setDrawColor(201,168,76,0.3); doc.setLineWidth(0.15);
+  doc.line(5, 93, W-5, 93);
+
+  doc.setFont('helvetica','normal'); doc.setFontSize(6.5);
+  doc.setTextColor(120, 115, 105);
+  doc.text('Cotonou, Bénin', 5, 100);
+
+  doc.setFont('times','bold'); doc.setFontSize(20);
+  doc.setTextColor(201, 168, 76);
+  doc.text('27.03.26', 5, 112);
+
+  const qp = [1,1,1,0,1, 1,0,0,0,1, 1,0,1,0,1, 1,0,0,0,1, 1,1,1,0,1];
+  doc.setFillColor(201, 168, 76);
+  for (let i = 0; i < 25; i++) {
+    if (qp[i]) doc.rect(58 + (i%5)*4.5, 89 + Math.floor(i/5)*4.5, 3.5, 3.5, 'F');
+  }
+  doc.setFont('helvetica','normal'); doc.setFontSize(4.5);
+  doc.setTextColor(90, 85, 75);
+  doc.text('BADGE OFFICIEL', 58, 116);
+
+  doc.setFillColor(201, 168, 76);
+  doc.rect(0, H-2.5, W, 2.5, 'F');
+
+  doc.setDrawColor(90, 90, 90); doc.setLineWidth(0.15);
+  const m = 3;
+  doc.line(0, m, m, m); doc.line(m, 0, m, m);
+  doc.line(W-m, m, W, m); doc.line(W-m, 0, W-m, m);
+  doc.line(0, H-m, m, H-m); doc.line(m, H-m, m, H);
+  doc.line(W-m, H-m, W, H-m); doc.line(W-m, H-m, W-m, H);
+
+  return { doc, fullName };
 }
 
+async function downloadBadge() {
+  const { doc, fullName } = buildBadgePDF();
+  doc.save('Badge_7Elite_' + fullName.replace(/\s+/g,'_') + '.pdf');
+  showToast('Badge téléchargé !', 'Imprimez sur papier épais 86×120mm.');
+}
+
+async function printBadge() {
+  const { doc } = buildBadgePDF();
+  const pdfBlob = doc.output('blob');
+  const blobUrl = URL.createObjectURL(pdfBlob);
+  const printHTML = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Badge 7Elite</title><style>@page{size:86mm 120mm;margin:0}*{margin:0;padding:0;box-sizing:border-box}html,body{width:86mm;height:120mm;overflow:hidden}embed{width:86mm;height:120mm;display:block}</style></head><body><embed src="${blobUrl}" type="application/pdf" width="86mm" height="120mm"><script>window.onload=function(){setTimeout(function(){window.print()},800)}<\/script></body></html>`;
+  const printBlob = new Blob([printHTML], { type: 'text/html' });
+  const printUrl = URL.createObjectURL(printBlob);
+  const printWin = window.open(printUrl, '_blank');
+  if (!printWin) {
+    const link = document.createElement('a');
+    link.href = blobUrl; link.download = 'Badge_7Elite_impression.pdf'; link.click();
+    showToast('Popup bloqué', 'Autorisez les popups ou téléchargez le PDF.');
+  } else {
+    showToast('Impression ouverte', 'Sélectionnez "Format personnalisé 86×120mm".');
+  }
+}
+
+// =========================================================
 // TOAST
+// =========================================================
 function showToast(title, msg) {
   document.getElementById('toastTitle').textContent = title;
   document.getElementById('toastMsg').textContent = msg;
   const t = document.getElementById('toast');
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 4200);
+  setTimeout(() => t.classList.remove('show'), 5000);
 }
 
+// =========================================================
 // INTERSECTION OBSERVER
+// =========================================================
 const obs = new IntersectionObserver(entries => entries.forEach(e => {
   if(e.isIntersecting) e.target.classList.add('visible');
-}), {threshold:0.1});
+}), {threshold: 0.1});
 document.querySelectorAll('.reveal, .programme-item').forEach(el => obs.observe(el));
 
+// =========================================================
 // PARALLAX HERO
+// =========================================================
 window.addEventListener('scroll', () => {
   const hc = document.querySelector('.hero-content');
   if(hc && window.scrollY < window.innerHeight) {

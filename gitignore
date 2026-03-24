@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# .gitignore — 7Elite Road Show
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Variables d'environnement (NE JAMAIS commiter)
+.env
+.env.local
+.env.production
+
+# Dépendances Node (si vous installez des packages)
+node_modules/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build / cache
+.cache/
+dist/
